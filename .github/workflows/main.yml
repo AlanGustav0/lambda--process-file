@@ -20,7 +20,7 @@ jobs:
           mkdir -p build
           cp target/lambda-process-file-*.jar build/
           cd build
-          zip -r deployment.zip target/*.jar
+          zip -r deployment.zip ./*
           
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
