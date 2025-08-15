@@ -33,7 +33,7 @@ jobs:
         uses: appleboy/lambda-action@v0.2.0
         with:
           function_name: lambda-process-file
-          zip_file: deployment.zip
+          zip_file: build/deployment.zip
           memory_size: 128
           timeout: 10
           handler: org.example.ExecutionHandler::handleRequest
