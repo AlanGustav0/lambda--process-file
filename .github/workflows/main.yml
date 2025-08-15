@@ -33,5 +33,5 @@ jobs:
           zip_file: deployment.zip
           memory_size: 128
           timeout: 10
-          handler: ExecutionHandler::handleRequest
+          handler: org.example.ExecutionHandler::handleRequest
           runtime: java17
