@@ -18,7 +18,7 @@ jobs:
         run: |
           mvn clean package
           mkdir -p build
-          cp target/lambda-process-file-*.jar build/
+          cp target/*-shaded.jar build/
           cd build
           zip deployment.zip ./*
           
