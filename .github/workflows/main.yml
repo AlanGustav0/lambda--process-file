@@ -27,7 +27,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: lambda-process-file
-          zip_file: example/deployment.zip
+          zip_file: lambda-process-file/deployment.zip
           memory_size: 128
           timeout: 10
           handler: org.example.ExecutionHandler::handleRequest
