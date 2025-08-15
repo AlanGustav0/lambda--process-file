@@ -1,0 +1,35 @@
+name: deploy to lambda
+on: [push]
+jobs:
+  deploy_jar:
+    name: deploy lambda function
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v1
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build JAR with Maven
+        run: |
+          cd example
+          mvn clean package
+          zip deployment.zip target/*.jar
+          
+      - name: Deploy to AWS Lambda
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          function_name: lambda-process-file
+          zip_file: example/deployment.zip
+          memory_size: 128
+          timeout: 10
+          handler: org.example.ExecutionHandler::handleRequest
+          role: arn:aws:iam::022660490942:user/developer
+          runtime: java17
