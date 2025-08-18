@@ -18,7 +18,7 @@ jobs:
         run: |
           mvn clean package
           cp target/*.jar .
-          zip deployment.zip lambda-process-file-1.0-SNAPSHOT.jar
+          zip deployment.zip original-lambda-process-file-1.0-SNAPSHOT.jar
           
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
